@@ -93,7 +93,7 @@ npm install
 npm start                   # stdio MCP server
 ```
 
-### 中文：使用 Ollama 本地 Qwen3
+### Local Qwen3 via Ollama
 
 ```powershell
 ollama pull qwen3:0.6b
@@ -104,7 +104,7 @@ $env:DECISION_MODE = "logprobs"  # also supports verbalized or sampling
 npm start
 ```
 
-Needle 的非英文 confidence 不可靠；中文输入建议使用上面的 OpenAI-compatible 后端。`logprobs` 一般比多次 sampling 省调用，并避免让小模型自报概率，但只适用于确实返回 `top_logprobs` 的本地服务；需要兼容时可改用 `verbalized`，或用 `sampling` 观察多次回答的一致性。
+Needle's confidence is unreliable on non-English input; for non-English states use the OpenAI-compatible backend above or `laya`. `logprobs` is cheaper than repeated sampling and avoids asking a small model to self-report probabilities, but only works with endpoints that actually return `top_logprobs`; fall back to `verbalized` for compatibility, or `sampling` to observe vote consistency.
 
 ## Multi-platform MCP and plugin install
 
@@ -267,10 +267,14 @@ src/index.mjs           MCP stdio server
 build.mjs               bundles CLI/native plugins and generates identity files
 ```
 
-`npm test` runs the offline `node:test` suite, including fake-home installer dry-runs and config round trips. It builds the portable plugin package before testing. `node fixtures/e2e_needle.mjs` — real end-to-end with Needle 3 (downloads engine on first run).
+`npm test` runs the offline `node:test` suite, including fake-home installer dry-runs and config round trips. It builds the portable plugin package before testing. `node fixtures/e2e_needle.mjs` — real end-to-end with Needle 3 (downloads engine on first run); `node fixtures/e2e_mcp.mjs` — a full JSON-RPC smoke session against the built stdio server.
 
 ## Honest references
 
 - TypeSafe Jev announcement: https://typesafe.ai/blog/introducing-system-one-models-and-jev
 - Jev request/response contract: https://developers.cloudflare.com/ai/models/typesafe/jev/ , https://docs.typesafe.ai
 - No official Jev paper or reproducible architecture is public as of writing. Third-party RLCD analyses exist but are reverse engineering, not spec.
+
+## License
+
+[MIT](LICENSE)

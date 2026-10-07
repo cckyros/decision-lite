@@ -96,7 +96,7 @@ npm install
 npm start                   # stdio MCP server
 ```
 
-### 中文：使用 Ollama 本地 Qwen3
+### 使用 Ollama 本地 Qwen3
 
 ```powershell
 ollama pull qwen3:0.6b
