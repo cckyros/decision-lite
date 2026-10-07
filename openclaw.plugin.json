@@ -1,0 +1,49 @@
+{
+  "id": "decision-lite",
+  "name": "decision-lite",
+  "description": "Jev-compatible decision layer MCP server: typed noul/choice/score questions with probability distributions and confidence, backed by any OpenAI-compatible endpoint.",
+  "version": "0.1.0",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "dataDir": {
+        "type": "string"
+      },
+      "backend": {
+        "type": "string"
+      },
+      "baseUrl": {
+        "type": "string"
+      },
+      "model": {
+        "type": "string"
+      },
+      "mode": {
+        "type": "string"
+      },
+      "samples": {
+        "type": "number"
+      },
+      "temperature": {
+        "type": "number"
+      },
+      "python": {
+        "type": "string"
+      },
+      "needleGeneration": {
+        "type": "number"
+      }
+    },
+    "additionalProperties": false
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "contracts": {
+    "tools": [
+      "evaluate",
+      "record_outcome",
+      "decision_stats"
+    ]
+  }
+}

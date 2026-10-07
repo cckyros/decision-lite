@@ -1,0 +1,1 @@
+{"id":1,"state":"The refund was charged twice and the customer is threatening a chargeback.","questions":{"is_urgent":{"type":"noul","instructions":"needs response within 1 hour?"},"department":{"type":"choice","instructions":"route to team","criteria":{"billing":"invoices and refunds","technical":"product bugs"}}}}

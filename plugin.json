@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "decision-lite",
+  "version": "0.1.0",
+  "description": "Jev-compatible decision layer MCP server: typed noul/choice/score questions with probability distributions and confidence, backed by any OpenAI-compatible endpoint.",
+  "license": "MIT",
+  "keywords": [
+    "decision-lite",
+    "mcp",
+    "agent-plugins",
+    "agent-skills",
+    "decision-layer"
+  ]
+}

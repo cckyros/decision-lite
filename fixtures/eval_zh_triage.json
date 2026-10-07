@@ -1,0 +1,81 @@
+{
+  "name": "zh-triage-v1",
+  "questions": {
+    "urgent": {
+      "type": "noul",
+      "instructions": "这条客户消息是否需要在一小时内优先处理？紧急 = 有明确硬时限、正在发生的损失、或安全/健康风险。",
+      "criteria": { "true": "需要一小时内优先处理", "false": "可按普通队列处理" }
+    },
+    "department": {
+      "type": "choice",
+      "instructions": "按客户核心诉求选择负责团队。",
+      "criteria": {
+        "billing": "扣款、付款、账单、订阅或退款",
+        "technical": "应用或网站故障、错误、功能不可用",
+        "delivery": "物流、配送、地址或包裹问题",
+        "account": "登录、账户访问、资料或安全问题"
+      }
+    },
+    "risk": {
+      "type": "score",
+      "instructions": "评估服务升级风险。",
+      "criteria": [
+        "低：平静、常规请求",
+        "中：担忧或不满但无明确升级威胁",
+        "高：拒付/投诉威胁、强烈升级意图或迫近严重损失"
+      ]
+    }
+  },
+  "examples": [
+    {
+      "state": "客户：我昨天买的耳机右耳没声音，想换个新的，不着急。",
+      "expected": { "urgent": false, "department": "technical", "risk": 0 },
+      "tags": ["calm", "product-defect"]
+    },
+    {
+      "state": "客户：你们扣了我两次款！现在就给我退回来，不然我马上投诉到消协！",
+      "expected": { "urgent": true, "department": "billing", "risk": 2 },
+      "tags": ["angry", "double-charge"]
+    },
+    {
+      "state": "客户：物流显示包裹签收了但我根本没收到，里面是给老人今晚必须吃的药，快递电话打不通！",
+      "expected": { "urgent": true, "department": "delivery", "risk": 2 },
+      "tags": ["deadline", "health"]
+    },
+    {
+      "state": "客户：请问一下怎么修改绑定的手机号？我换了新号码。",
+      "expected": { "urgent": false, "department": "account", "risk": 0 },
+      "tags": ["calm", "howto"]
+    },
+    {
+      "state": "客户：APP 一直闪退，我下午三点前必须导出报表给客户，现在都打不开！",
+      "expected": { "urgent": true, "department": "technical", "risk": 1 },
+      "tags": ["deadline", "app-crash"]
+    },
+    {
+      "state": "客户：我的发票好像开错了抬头，下个月报销前帮我改一下就行。",
+      "expected": { "urgent": false, "department": "billing", "risk": 0 },
+      "tags": ["calm", "invoice"]
+    },
+    {
+      "state": "客户：账号突然登不上了，提示密码错误，我怕被盗号了，里面还有余额！",
+      "expected": { "urgent": true, "department": "account", "risk": 1 },
+      "tags": ["security", "worried"]
+    },
+    {
+      "state": "客户：你们的配送太慢了，说好三天到现在五天了还没影，再不送到我就退货加差评！",
+      "expected": { "urgent": false, "department": "delivery", "risk": 2 },
+      "tags": ["complaint-threat", "shipping-delay"]
+    },
+    {
+      "state": "客户：请问会员到期自动续费是在哪天扣款？我想确认下账单。",
+      "expected": { "urgent": false, "department": "billing", "risk": 0 },
+      "tags": ["calm", "billing-question"]
+    },
+    {
+      "state": "客户：网站付款页面点了没反应，试了一上午了，我这边促销活动马上结束，损失了你们赔吗？！",
+      "expected": { "urgent": true, "department": "technical", "risk": 2 },
+      "tags": ["angry", "deadline", "payment-broken"]
+    }
+  ]
+}

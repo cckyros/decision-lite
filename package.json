@@ -1,0 +1,55 @@
+{
+  "name": "decision-lite",
+  "version": "0.1.0",
+  "description": "Jev-compatible decision layer MCP server: typed noul/choice/score questions with probability distributions and confidence, backed by any OpenAI-compatible endpoint.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cckyros/decision-lite.git"
+  },
+  "bugs": "https://github.com/cckyros/decision-lite/issues",
+  "homepage": "https://github.com/cckyros/decision-lite#readme",
+  "type": "module",
+  "main": "./dist/dsh-plugin.mjs",
+  "bin": {
+    "decision-lite": "./dist/cli.mjs"
+  },
+  "openclaw": {
+    "extensions": ["./openclaw-dist/openclaw-plugin.mjs"]
+  },
+  "files": [
+    "src/",
+    "python/needle_bridge.py",
+    "python/laya_bridge.py",
+    "dist/",
+    "openclaw-dist/",
+    "skills/",
+    "plugin.json",
+    "mcp.json",
+    ".mcp.json",
+    "marketplace.json",
+    "openclaw.plugin.json",
+    "dsh.plugin.json",
+    "cordis.patch.yml",
+    "build.mjs",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/index.mjs",
+    "build": "node build.mjs",
+    "pretest": "npm run build",
+    "test": "node --test",
+    "verify": "npm test && npm pack --dry-run",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.12",
+    "typebox": "^1.3.17"
+  }
+}

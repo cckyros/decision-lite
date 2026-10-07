@@ -1,0 +1,19 @@
+{
+  "name": "decision-lite",
+  "owner": {
+    "name": "decision-lite"
+  },
+  "metadata": {
+    "description": "Jev-compatible decision layer MCP server: typed noul/choice/score questions with probability distributions and confidence, backed by any OpenAI-compatible endpoint.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "decision-lite",
+      "source": ".",
+      "description": "Jev-compatible decision layer MCP server: typed noul/choice/score questions with probability distributions and confidence, backed by any OpenAI-compatible endpoint.",
+      "version": "0.1.0",
+      "license": "MIT"
+    }
+  ]
+}
